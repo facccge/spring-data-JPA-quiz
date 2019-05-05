@@ -3,15 +3,16 @@ buildscript {
         springBootVersion = '2.0.0.RELEASE'
     }
     repositories {
-        maven {
-            url "http://ec2-54-222-235-15.cn-north-1.compute.amazonaws.com.cn:8081/repository/maven-central/"
-        }
+//        maven { url "https://plugins.gradle.org/m2/" }
+//        maven { url "https://repo1.maven.org/maven2/" }
+//        maven { url "http://ec2-54-222-235-15.cn-north-1.compute.amazonaws.com.cn:8081/repository/maven-central/" }
         mavenCentral()
     }
     dependencies {
         classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
     }
 }
+
 
 apply plugin: 'java'
 apply plugin: 'idea'
@@ -21,9 +22,12 @@ apply plugin: 'io.spring.dependency-management'
 apply plugin: 'war'
 
 repositories {
-    maven {
-        url "http://ec2-54-222-235-15.cn-north-1.compute.amazonaws.com.cn:8081/repository/maven-central/"
-    }
+    maven { url "https://plugins.gradle.org/m2/" }
+//    maven { url "https://repo1.maven.org/maven2/" }
+
+//    maven {
+//        url "http://ec2-54-222-235-15.cn-north-1.compute.amazonaws.com.cn:8081/repository/maven-central/"
+//    }
 }
 
 configurations {
@@ -32,6 +36,8 @@ configurations {
 
 dependencies {
     runtime('mysql:mysql-connector-java')
-    compile('org.springframework.boot:spring-boot-starter-web')
+    compile('org.springframework.boot:spring-boot-starter-web',
+            'org.springframework.boot:spring-boot-starter-data-jpa',
+            "org.flywaydb:flyway-core:5.2.4")
     testCompile('org.springframework.boot:spring-boot-starter-test')
 }
