@@ -1,14 +1,14 @@
 package com.example.employee.entity;
 
 import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.MappedSuperclass;
 import java.io.Serializable;
 
-/**
- * @author Philadelphia
- */
 @Entity
-public class Employee implements Serializable{
-    private int id;
+public class Employee{
+    @Id
+    private long id;
     private String name;
     private int age;
     private String gender;
@@ -26,7 +26,7 @@ public class Employee implements Serializable{
         this.salary = salary;
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 

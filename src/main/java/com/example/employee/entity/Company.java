@@ -1,11 +1,13 @@
 package com.example.employee.entity;
 
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import java.io.Serializable;
 
 @Entity
 public class Company implements Serializable {
-    private int id;
+    @Id
+    private long id;
     private String companyName;
     private int employeesNumber;
 
@@ -18,7 +20,7 @@ public class Company implements Serializable {
         this.employeesNumber = employeesNumber;
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
@@ -28,5 +30,17 @@ public class Company implements Serializable {
 
     public int getEmployeesNumber() {
         return employeesNumber;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public void setCompanyName(String companyName) {
+        this.companyName = companyName;
+    }
+
+    public void setEmployeesNumber(int employeesNumber) {
+        this.employeesNumber = employeesNumber;
     }
 }
