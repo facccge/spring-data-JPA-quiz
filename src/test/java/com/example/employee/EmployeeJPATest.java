@@ -48,7 +48,7 @@ public class EmployeeJPATest {
     public void should_return_employee_when_input_employee_name() throws Exception {
         //1.查询名字是小红的employee
         Employee expectedEmployee = new Employee(1,"xiaohong",19,"female",1,7000);
-        Employee actualEmployee = employeeRepository.getEmployeeByName("xiaohong");
+        Employee actualEmployee = employeeRepository.findByName("xiaohong");
         String actualName = actualEmployee.getName();
         assertThat(actualName).isEqualTo(expectedEmployee.getName());
     }
@@ -56,9 +56,9 @@ public class EmployeeJPATest {
     @Test
     public void should_return_employee_given_character_in_name_and_salary_large_than() throws Exception {
         //2.找出Employee表中第一个姓名包含`n`字符的雇员所有个人信息
-        Employee expectedEmployee = new Employee(1,"xiaohong",19,"female",1,7000);
-
-        String actualName = null;
+        Employee expectedEmployee = new Employee(0, "xiaoming",20,"male",0,6000 );
+        Employee actualEmployee = employeeRepository.findFirstByNameContainingAndSalaryGreaterThan("n",0);
+        String actualName = actualEmployee.getName();
         assertThat(actualName).isEqualTo(expectedEmployee.getName());
     }
 
