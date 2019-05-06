@@ -31,7 +31,8 @@ public interface EmployeeRepository extends JpaRepository<Employee, Long> {
     Page<Employee> findAll(Pageable pageable);
 
     //5.查找**的所在的公司的公司名称
-//    String getCompanyNameByEmployeeName(String name);
+    @Query("select c.companyName from Employee e join Company c on e.companyId= c.id where e.name = ?1")
+    String findCompanyNameByName(String name);
 
     //6.将*的名字改成*,输出这次修改影响的行数
 //    int updateEmployeeName(String name);
