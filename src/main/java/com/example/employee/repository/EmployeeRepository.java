@@ -7,6 +7,7 @@ import org.springframework.boot.autoconfigure.data.jpa.JpaRepositoriesAutoConfig
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -22,7 +23,8 @@ public interface EmployeeRepository extends JpaRepository<Employee, Long> {
     Employee findFirstByNameContainingAndSalaryGreaterThan(String name,int salary);
 
     //3.找出一个薪资最高且公司ID是*的雇员以及该雇员的姓名
-//    Employee getEmployeeByHighestSalaryAndCompanyIdIs(int companyId);
+    @Query("select e from Employee e where e.salary=(select max(salary) from Employee where companyId=?1) and e.companyId=?1")
+    Employee findByMaxSalaryAndCompanyId(int companyId);
 
     //4.实现对Employee的分页查询，每页两个数据
 //    Page<Employee> findAllEmployee(Pageable pageable);
